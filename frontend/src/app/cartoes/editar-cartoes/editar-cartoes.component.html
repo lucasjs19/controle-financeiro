@@ -1,0 +1,24 @@
+<div class="container" *ngIf="cartao | async as cartaoData">
+    <mat-card class="card">
+        <mat-card-content>
+            <div>
+                <mat-form-field>
+                    <mat-label>Nome do cartão</mat-label>
+                    <input matInput [(ngModel)]="cartaoData.nome" matInput>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Bancos</mat-label>
+                    <mat-select [(ngModel)]="cartaoData.banco.id" name="banco">
+                        <mat-option *ngFor="let banco of bancosList" [value]="banco.id">{{banco.nome}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button class="button" mat-raised-button color="primary" (click)="salvar(cartaoData.nome, cartaoData.banco.id)">Salvar</button>
+                <button class="button" mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

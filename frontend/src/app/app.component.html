@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <button mat-flat-button color="primary" (click)="onClickHome()">Home</button>
+  <button mat-flat-button color="primary" (click)="onClickLancamentoDespesas()">Lançamento de Despesas</button>
+  <button [matMenuTriggerFor]="cadastro" mat-flat-button color="primary">Cadastro</button>
+  <mat-menu #cadastro="matMenu">
+    <button mat-menu-item (click)="onClickCadastroBancos()">Bancos</button>
+    <button mat-menu-item (click)="onClickCadastroCartoes()">Cartões</button>
+  </mat-menu>
+  <button mat-icon-button class="icons" (click)="redirectToGitHub()">
+    <img src="../assets/images/github-mark-white.png" alt="GitHub">
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet>
