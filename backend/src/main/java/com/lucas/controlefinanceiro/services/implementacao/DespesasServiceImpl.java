@@ -21,8 +21,10 @@ public class DespesasServiceImpl implements DespesasService {
         BigDecimal valorParcela = despesa.getValor().divide(new BigDecimal(despesa.getParcela()), 4, RoundingMode.HALF_UP);
         for (int i = 1; i <= despesa.getParcela(); i++){
             Despesas novaDespesa = new Despesas(despesa.getDescricao(), despesa.getVencimento().plusMonths(i-1), despesa.getDespesasTipo(), despesa.getDespesasGrupos(), despesa.getDespesasCategorias(), valorParcela, i);
-            despesasRepository.save(novaDespesa);
-            System.out.println("Despesa " + i + " salva com sucesso.");
+            //System.out.println(novaDespesa.getDespesasGrupos().getDescricao());
+            //System.out.println(novaDespesa.getDespesasCategorias().getDescricao());
+            //System.out.println(novaDespesa.getDespesasTipo().getDescricao());
+            Despesas despesaSalva = despesasRepository.save(novaDespesa);
         }
         return despesa;
     }

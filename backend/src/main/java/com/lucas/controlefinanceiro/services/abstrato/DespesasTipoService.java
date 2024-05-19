@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface DespesasTipoService {
     List<DespesasTipo> getAllDespesasTipo();
+    DespesasTipo getTipoById(Long id);
 
 }
