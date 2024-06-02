@@ -82,10 +82,16 @@ export class LancarDespesasComponent {
           (categoriaDespesa: any) => {
             this.despesasGrupoService.getDespesaGrupoById(this.grupoDespesaSelecionada).subscribe(
               (grupoDespesa: any) => {
+                
+                let vencimento: Date = this.dataSelecionada; // Vencimento padrão é a data selecionada
+                if (tipoDespesa.descricao === 'Mensal') {
+                  vencimento = new Date('1900-01-01'); // Se o tipo de despesa for mensal, o vencimento é 1900-01-01 para controlarmos no banco qual oq é despesa mensal
+                }
+
                 const despesaNova = {
                   id: null,
                   descricao: this.inputDescricao,
-                  vencimento: this.dataSelecionada,
+                  vencimento: vencimento,
                   valor: this.valor,
                   parcela: this.parcela,
                   despesasTipo: tipoDespesa,
@@ -111,7 +117,9 @@ export class LancarDespesasComponent {
     )
   }
 
-  cancelar() { }
+  cancelar() { 
+    this.router.navigate(['/'])
+  }
 
   
 }

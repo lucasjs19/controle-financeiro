@@ -8,16 +8,14 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
-@Table
+@Table (name = "VW_DESPESAS_DETALHADAS")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Despesas {
+public class VwDespesasDetalhadas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
@@ -34,9 +32,8 @@ public class Despesas {
     DespesasCategorias despesasCategorias;
     BigDecimal valor;
     Integer parcela;
-    Boolean pago;
 
-    public Despesas(String descricao, LocalDate vencimento, DespesasTipo despesasTipo, DespesasGrupos despesasGrupos, DespesasCategorias despesasCategorias, BigDecimal valor, Integer parcela, Boolean pago) {
+    public VwDespesasDetalhadas(String descricao, LocalDate vencimento, DespesasTipo despesasTipo, DespesasGrupos despesasGrupos, DespesasCategorias despesasCategorias, BigDecimal valor, Integer parcela) {
         this.descricao = descricao;
         this.vencimento = vencimento;
         this.despesasTipo = despesasTipo;
@@ -44,6 +41,5 @@ public class Despesas {
         this.despesasCategorias = despesasCategorias;
         this.valor = valor;
         this.parcela = parcela;
-        this.pago = pago;
     }
 }

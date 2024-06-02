@@ -17,7 +17,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
 @NgModule({
   exports: [
     MatTableModule,
@@ -38,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     CommonModule,
     FormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
   ]
 })
 export class AppMaterialModule { }

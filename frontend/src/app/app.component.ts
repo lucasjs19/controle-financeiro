@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
@@ -23,23 +23,23 @@ export class AppComponent {
   title = 'Controle Financeiro';
 
   constructor(private router: Router,
-              private titleService: Title){
-                this.titleService.setTitle(this.title)
-              }
+    private titleService: Title) {
+    this.titleService.setTitle(this.title)
+  }
 
-  onClickHome(){
+  onClickHome() {
     this.router.navigate([''])
   }
 
-  onClickLancamentoDespesas(){
+  onClickLancamentoDespesas() {
     this.router.navigate(['/despesas/lancar'])
   }
 
-  onClickCadastroBancos(){
+  onClickCadastroBancos() {
     this.router.navigate(['/bancos/cadastrar'])
   }
 
-  onClickCadastroCartoes(){
+  onClickCadastroCartoes() {
     this.router.navigate(['/cartoes/cadastrar'])
   }
 

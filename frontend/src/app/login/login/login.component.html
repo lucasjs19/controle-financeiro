@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="mat-card">
+        <div><label class="label">Novo Usuario? Crie uma conta.</label></div>
+        <div class="input-div">
+            <mat-form-field class="input">
+                <mat-label>Usúario</mat-label>
+                <input [(ngModel)]="inputUser" matInput>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="input">
+                <mat-label>Senha</mat-label>
+                <input type="password" [(ngModel)]="inputPassword" matInput>
+            </mat-form-field>
+        </div>
+       
+        <div>
+            <button class="button" mat-raised-button color="primary">Logar</button>
+        </div>
+    </div>
+</div>

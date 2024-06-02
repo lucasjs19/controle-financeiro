@@ -1,6 +1,8 @@
 package com.lucas.controlefinanceiro.controllers;
 
+import com.lucas.controlefinanceiro.model.entities.VwDespesasDetalhadas;
 import com.lucas.controlefinanceiro.model.entities.VwDespesasMensais;
+import com.lucas.controlefinanceiro.services.abstrato.VwDespesasDetalhadasService;
 import com.lucas.controlefinanceiro.services.abstrato.VwDespesasMensaisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +14,10 @@ import java.util.List;
 public class VwDespesasMensaisController {
     @Autowired
     VwDespesasMensaisService vwDespesasMensaisService;
-    @GetMapping("/despesas-mensais-total")
-    public List<VwDespesasMensais> listarDespesasMensaisTotal(){
-        return vwDespesasMensaisService.getAllDespesasMensaisTotal();
+
+    @GetMapping("/despesas-mensais")
+    public List<VwDespesasMensais> listarDepesasMensais(){
+        return vwDespesasMensaisService.getAllDespesasMensais();
     }
 
 }
