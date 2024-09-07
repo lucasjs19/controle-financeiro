@@ -1,0 +1,56 @@
+services:
+  backend:
+    container_name: "backend"
+    depends_on:
+      - postgresdb
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+    networks:
+      - rede_app
+    environment:
+      SPRING_APPLICATION_JSON: '{
+              "spring.datasource.url"  : "jdbc:postgresql://postgresdb:$POSTGRESDB_DOCKER_PORT/$POSTGRESDB_DATABASE",
+              "spring.datasource.username" : "$POSTGRESDB_USER",
+              "spring.datasource.password" : "$POSTGRESDB_ROOT_PASSWORD",
+              "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+              "spring.jpa.hibernate.ddl-auto" : "update"
+            }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+  frontend:
+    container_name: "frontend"
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    networks:
+      - rede_app
+  postgresdb:
+    container_name: "postgresdb"
+    image: postgres:13
+    restart: always
+    env_file: ./.env
+    environment:
+      - POSTGRES_USER=$POSTGRESDB_USER
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+      - POSTGRES_DB=$POSTGRESDB_DATABASE
+    ports:
+      - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
+    networks:
+      - rede_app
+    volumes:
+      - postgresdb:/var/lib/postgres
+volumes:
+  postgresdb:
+networks:
+  rede_app:
+    driver: bridge

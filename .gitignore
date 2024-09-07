@@ -16,7 +16,6 @@ target/
 
 # Arquivos de configuração específicos do ambiente local
 *.properties
-*.yml
 *.yaml
 
 # Arquivos do sistema
