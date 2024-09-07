@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-card class="card">
+        <mat-card-content>
+            <div>
+                <mat-form-field>
+                    <mat-label>Nome do cartão</mat-label>
+                    <input [(ngModel)]="inputName" matInput>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Bancos</mat-label>
+                    <mat-select [(ngModel)]="selectedBanco" name="banco">
+                        @for (banco of bancosList; track banco) {
+                        <mat-option [value]="banco.id">{{banco.nome}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button class="button" mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+                <button class="button" mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

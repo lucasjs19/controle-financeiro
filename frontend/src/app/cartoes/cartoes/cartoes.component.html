@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-content>  
+      <table mat-table [dataSource]="cartoes" class="mat-elevation-z8">
+  
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let cartao"> {{cartao.id}} </td>
+        </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let cartao"> {{cartao.nome}} </td>
+        </ng-container>
+
+        <!-- Banco Column -->
+        <ng-container matColumnDef="banco">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let cartao"> {{cartao.banco.nome}} </td>
+          </ng-container>
+        
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let banco">
+            <button mat-icon-button matTooltip = "Editar Banco" color="primary" (click) = "editar(banco.id)"><mat-icon>edit</mat-icon></button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>

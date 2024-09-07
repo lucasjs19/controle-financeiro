@@ -1,0 +1,25 @@
+# Ignorar diretórios de dependências e cache
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+*.log
+
+# Ignorar arquivos e diretórios de configuração de desenvolvimento
+.angular/
+*.ts
+*.js.map
+*.d.ts
+
+# Ignorar arquivos de build e caches
+dist/
+build/
+*.tmp
+*.swp
+
+# Ignorar arquivos de configuração específicos do ambiente local
+*.env
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db

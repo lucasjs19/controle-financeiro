@@ -1,0 +1,24 @@
+# Ignorar arquivos de compilação
+target/
+*.jar
+*.war
+
+# Ignorar diretórios de cache
+.mvn/
+.spring/
+.idea/
+*.iml
+
+# Ignorar arquivos temporários e logs
+*.log
+*.tmp
+*.swp
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de configuração específicos do ambiente local
+*.properties
+*.yml
+*.yaml

@@ -1,0 +1,80 @@
+<div class="container">
+    <mat-card class="card">
+        <mat-card-content>
+            <div style="display: flex; gap: 10px;">
+                <mat-form-field>
+                    <mat-label>Descriçao</mat-label>
+                    <input [(ngModel)]="inputDescricao" matInput>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Vencimento</mat-label>
+                    <input [(ngModel)]="dataSelecionada" (dateChange)="onDataSelecionadaChange($event)" matInput
+                        [matDatepicker]="picker">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <mat-form-field>
+                    <mat-label>Tipo de Despesa</mat-label>
+                    <mat-select [(ngModel)]="tipoDespesaSelecionada" name="tipoDespesa">
+                        @for (tipoDespesa of tiposDepesasList; track tipoDespesa) {
+                        <mat-option [value]="tipoDespesa.id">{{tipoDespesa.descricao}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Cartão de Crédito</mat-label>
+                    <mat-select [(ngModel)]="cartaoCreditoSelecionado" name="cartaoCredito"
+                        [disabled]="tipoDespesaSelecionada !== 1">
+                        @for (cartaoCredito of cartaoCreditoList; track cartaoCredito) {
+                        <mat-option [value]="cartaoCredito.id">{{cartaoCredito.nome}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+
+                <mat-form-field>
+                    <mat-label>Grupo da Despesa</mat-label>
+                    <mat-select [(ngModel)]="grupoDespesaSelecionada" name="despesaGrupo" (selectionChange)="onGrupoDespesaChange(grupoDespesaSelecionada)">
+                        @for (despesaGrupo of gruposDespesaList; track despesaGrupo) {
+                        <mat-option [value]="despesaGrupo.id">{{despesaGrupo.descricao}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Categoria da Despesa</mat-label>
+                    <mat-select [(ngModel)]="categoriaDespesaSelecionada" name="despesaCategoria">
+                        @for (despesaCategoria of categoriasDespesaList; track despesaCategoria) {
+                        <mat-option [value]="despesaCategoria.id">{{despesaCategoria.descricao}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <mat-form-field class="field">
+                    <mat-label>Valor</mat-label>
+                    <input matInput type="text" [(ngModel)]="valor">
+                </mat-form-field>
+
+                <mat-form-field class="field">
+                    <mat-label>Parcela</mat-label>
+                    <input matInput type="number" [(ngModel)]="parcela" min="1" max="999">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <button class="button" mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+                <button class="button" mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

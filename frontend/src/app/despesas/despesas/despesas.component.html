@@ -1,0 +1,169 @@
+<mat-card class="container">
+    <mat-tab-group>
+        <mat-tab label="Valor total das despesas por mês" class="tab">
+            <mat-card>
+                <mat-card-content>
+                    <table mat-table [dataSource]="despesasMensaisTotal" class="mat-elevation-z8">
+
+                        <!-- Vencimento Column -->
+                        <ng-container matColumnDef="mesAno">
+                            <th mat-header-cell *matHeaderCellDef> Vencimento </th>
+                            <td mat-cell *matCellDef="let despesa"> {{formatMesAno(despesa.mesAno)}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="valor">
+                            <th mat-header-cell *matHeaderCellDef> Valor </th>
+                            <td mat-cell *matCellDef="let despesa"> R${{despesa.valor | number:'1.2-2' }} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsTotal"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsTotal;"></tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+
+        </mat-tab>
+        <mat-tab label="Despesas Mensais" class="tab">
+            <table mat-table [dataSource]="despesasMensais" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="descricao">
+                    <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                    <td mat-cell *matCellDef="let despesa"> {{despesa.descricao}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                    <td mat-cell *matCellDef="let despesa"> {{despesa.despesasTipo.descricao}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="grupo">
+                    <th mat-header-cell *matHeaderCellDef> Grupo </th>
+                    <td mat-cell *matCellDef="let despesa"> {{despesa.despesasGrupos.descricao}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="categoria">
+                    <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                    <td mat-cell *matCellDef="let despesa"> {{despesa.despesasCategorias.descricao}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="valor">
+                    <th mat-header-cell *matHeaderCellDef> Valor </th>
+                    <td mat-cell *matCellDef="let despesa"> R${{despesa.valor | number:'1.2-2' }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsMensais"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsMensais;"></tr>
+            </table>
+        </mat-tab>
+        <mat-tab label="Despesas detalhadas" class="tab">
+            <mat-card>
+                <mat-card-content>
+
+                    <table mat-table [dataSource]="despesasDetalhadas" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="descricao">
+                            <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="vencimento">
+                            <th mat-header-cell *matHeaderCellDef> Vencimento </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.vencimento}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="tipo">
+                            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.despesasTipo.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="grupo">
+                            <th mat-header-cell *matHeaderCellDef> Grupo </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.despesasGrupos.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="categoria">
+                            <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.despesasCategorias.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="valor">
+                            <th mat-header-cell *matHeaderCellDef> Valor </th>
+                            <td mat-cell *matCellDef="let despesa"> R${{despesa.valor | number:'1.2-2' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="parcela">
+                            <th mat-header-cell *matHeaderCellDef> Parcela </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.parcela}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="pagar">
+                            <th mat-header-cell *matHeaderCellDef>Ação</th>
+                            <td mat-cell *matCellDef="let despesa">
+                                <button mat-icon-button matTooltip="Pagar Despesa" style="color: green"
+                                    (click)="onPay(despesa.id)"><mat-icon>paid</mat-icon></button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsDetalhada"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsDetalhada;"></tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Despesas Pagas" class="tab">
+            <mat-card>
+                <mat-card-content>
+
+                    <table mat-table [dataSource]="despesasPagas" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="descricao">
+                            <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="vencimento">
+                            <th mat-header-cell *matHeaderCellDef> Vencimento </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.vencimento}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="tipo">
+                            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.despesasTipo.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="grupo">
+                            <th mat-header-cell *matHeaderCellDef> Grupo </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.despesasGrupos.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="categoria">
+                            <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.despesasCategorias.descricao}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="valor">
+                            <th mat-header-cell *matHeaderCellDef> Valor </th>
+                            <td mat-cell *matCellDef="let despesa"> R${{despesa.valor | number:'1.2-2' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="parcela">
+                            <th mat-header-cell *matHeaderCellDef> Parcela </th>
+                            <td mat-cell *matCellDef="let despesa"> {{despesa.parcela}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="pagar">
+                            <th mat-header-cell *matHeaderCellDef>Ação</th>
+                            <td mat-cell *matCellDef="let despesa">
+                                <button mat-icon-button matTooltip="Voltar despesa para aberto" style="color: red"
+                                    (click)="onUnpay(despesa.id)"><mat-icon>paid</mat-icon></button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsDetalhada"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsDetalhada;"></tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

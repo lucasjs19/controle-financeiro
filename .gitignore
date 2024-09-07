@@ -1,0 +1,64 @@
+# Diretórios e arquivos de compilação
+target/
+*.jar
+*.war
+
+# Diretórios de configuração e cache
+.gradle/
+.mvn/
+.idea/
+*.iml
+
+# Arquivos temporários e logs
+*.log
+*.tmp
+*.swp
+
+# Arquivos de configuração específicos do ambiente local
+*.properties
+*.yml
+*.yaml
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Outras pastas e arquivos não necessários
+*.class
+*.jar
+*.war
+*.zip
+*.tar.gz
+*.tar
+
+# Diretórios de dependências e cache
+node_modules/
+
+# Arquivos de log
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+*.log
+
+# Arquivos e diretórios de construção
+dist/
+build/
+*.tmp
+*.swp
+
+# Arquivos de configuração específicos do ambiente local
+*.env
+
+# Arquivos de configuração e IDE
+.angular/
+*.ts
+*.js.map
+*.d.ts
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Outras pastas e arquivos não necessários
+*.map
+*.eslintcache
